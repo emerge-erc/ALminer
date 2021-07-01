@@ -1,4 +1,4 @@
-<img src="git_path_to_logo" align="center"/>
+<img src="images/ALminer_logo_header.jpg" alt="ALminer" align="center"/>
 
 # ALminer: ALMA Archive Mining & Visualization Toolkit
 
@@ -20,7 +20,7 @@ The dependencies are `numpy`, `pandas`, `matplotlib`, `pyvo`, [`astropy`](https:
 
 ## Usage
 
-We have created an extensive [tutorial Jupyter Notebook](github_link_to_notebook) where all `alminer` features have been highlighted. This is an excellent starting points to get familiar with all the possibilities. We aim to keep adding new notebooks relevant for various sub-fields in the future. A glossery of all functions is provided at the bottom of this tutorial Jupyter Notebook.
+We have created an extensive [tutorial Jupyter Notebook](https://github.com/emerge-erc/ALminer/blob/main/notebooks/tutorial/ALminer_tutorial.ipynb) where all `alminer` features have been highlighted. This is an excellent starting points to get familiar with all the possibilities. We aim to keep adding new notebooks relevant for various sub-fields in the future. A glossery of all functions is provided at the bottom of this tutorial Jupyter Notebook.
 
 
 ## Acknowledgements
@@ -38,14 +38,16 @@ If you use `alminer` as part of your research, please consider adding the follow
 
 We also acknowledge the work of Leiden University M.Sc. students, Robin Mentel and David van Dop, who contributed to early versions of this work.
 
-
-<img src="git_path_to_logo/UniVie_logo.jpg" alt="logo2" style="width: 300px;" align="center"/>
-<img src="git_path_to_logo/ERC_logo.jpg" alt="logo1" style="width: 180px;" align="center"/>
-<img src="git_path_to_logo/Allegro_logo.png" alt="logo3" style="width: 285px;" align="center"/>
-
-
 ## Contact us
 
 If you encounter issues, please [open an issue](https://github.com/emerge-erc/ALminer/issues). 
 
 If you have suggestions for improvement or would like to collaborate with us on this project, please e-mail [Aida Ahmadi](mailto:aahmadi@strw.leidenuniv.nl) and [Alvaro Hacar](mailto:alvaro.hacar@univie.ac.at).
+
+<tr>
+<td> <img src="images/UniVie_logo.jpg" alt="University of Vienna" style="height: 95px;" align="center"/></td>
+<td> </td>
+<td> <img src="images/ERC_logo.jpg" alt="ERC" style="height: 95px;" align="center"/></td>
+<td> </td>
+<td> <img src="images/Allegro_logo.png" alt="Allegro" style="height: 95px;" align="center"/></td>
+</tr>
