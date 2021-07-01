@@ -44,4 +44,4 @@ If you encounter issues, please [open an issue](https://github.com/emerge-erc/AL
 
 If you have suggestions for improvement or would like to collaborate with us on this project, please e-mail [Aida Ahmadi](mailto:aahmadi@strw.leidenuniv.nl) and [Alvaro Hacar](mailto:alvaro.hacar@univie.ac.at).
 
-<img src="images/UniVie_logo.jpg" alt="University of Vienna" width= "2.5cm"/><img src="images/ERC_logo.jpg" alt="ERC" width= "2.5cm"/><img src="images/Allegro_logo.png" alt="Allegro"  width= "2.5cm"/>
+<img src="images/UniVie_logo.jpg" alt="University of Vienna" width= "100px"/><img src="images/ERC_logo.jpg" alt="ERC" width= "100px"/><img src="images/Allegro_logo.png" alt="Allegro"  width= "100px"/>
