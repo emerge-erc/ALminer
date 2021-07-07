@@ -11,3 +11,7 @@ __all__ = ["catalog", "CO_lines", "conesearch", "download_data", "explore", "fil
            "get_description", "get_units", "get_info", "keysearch", "line_coverage", "plot_line_overview",
            "plot_overview", "plot_observations", "plot_bands", "plot_sky", "run_query", "summary",
            "target", "save_source_reports", "save_table"]
+try:
+    from .version import __version__
+except ImportError:
+    __version__ = " "

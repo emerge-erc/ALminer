@@ -1,11 +1,15 @@
 from setuptools import setup, find_packages
 
+version = {}
+with open('alminer/version.py') as v:
+    exec(v.read(), version)
+
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
     name='alminer',
-    version='0.1.0',
+    version=version['__version__'],
     author='Aida Ahmadi',
     author_email='aahmadi@strw.leidenuniv.nl',
     description='ALminer: ALMA archive mining and visualization toolkit',
@@ -23,6 +27,6 @@ setup(
     ],
     license='MIT',
     install_requires=['numpy>=1.15', 'pandas>1.0', 'matplotlib>=3.3.0', 'pyvo>=1.1',
-                      'astropy>=3.1.2', 'astroquery @ git+https://github.com/astropy/astroquery'],
+                      'astropy>=3.1.2', 'astroquery>=0.4.2'],
     python_requires='>=3.6'
 )
