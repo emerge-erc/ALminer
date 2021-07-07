@@ -43,7 +43,7 @@ To work with the tutorial notebook interactively:
 
 `alminer` has been developed through a collaboration between [Allegro](https://www.alma-allegro.nl/), the ALMA Regional Centre in The Netherlands, and the University of Vienna as part of the [EMERGE-StG project](https://emerge.alvarohacar.com). This project has received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation programme (Grant agreement No. 851435).
 
-If you use `alminer` as part of your research, please consider adding the following ASCL citation to your work:
+If you use `alminer` as part of your research, please consider citing the following [ASCL article](https://ascl.net/code/v/2971):
 
 ```
 @article{TBD}
