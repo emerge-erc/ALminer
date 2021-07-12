@@ -1,6 +1,3 @@
-sphinx>=4.0.0
-pandoc
-jupyter
+ipykernel
 nbsphinx
-pygments>=2.4.1
 furo
