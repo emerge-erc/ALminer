@@ -1366,7 +1366,12 @@ def download_data(observations, fitsonly=False, dryrun=False, print_urls=False, 
     print("Total number of Member OUSs to download = {}".format(len(uids_list)))
     print("Selected Member OUSs: {}".format(uids_list.tolist()))
     print("Number of files to download = {}".format(dl_files))
-    print("Needed disk space = {:.1f} GB".format(dl_size))
+    if dl_size > 1000.:
+        print("Needed disk space = {:.1f} TB".format(dl_size/1000.))
+    elif dl_size < 1.:
+        print("Needed disk space = {:.1f} MB".format(dl_size*1000.))
+    else:
+        print("Needed disk space = {:.1f} GB".format(dl_size))
     if print_urls:
         print("File URLs to download = {}".format("\n".join(dl_link_list)))
     print("--------------------------------")
