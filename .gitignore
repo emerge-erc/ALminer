@@ -80,6 +80,10 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+docs/_static/
+docs/_templates/
+docs/tutorials/reports/
+docs/tutorials/tables/
 
 # PyBuilder
 .pybuilder/

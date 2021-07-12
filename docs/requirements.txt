@@ -1,0 +1,5 @@
+sphinx>=1.7.5
+pandoc
+jupyter
+nbsphinx
+pygments>=2.4.1
