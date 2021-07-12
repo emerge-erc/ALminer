@@ -13,7 +13,6 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
-import furo
 
 
 # -- Project information -----------------------------------------------------
@@ -36,8 +35,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.napoleon',
     'sphinx.ext.imgmath',
-    'nbsphinx', 'sphinx.ext.mathjax',
-    'furo'
+    'nbsphinx', 'sphinx.ext.mathjax'
 ]
 
 source_suffix = ['.rst', '.ipynb']
@@ -56,12 +54,6 @@ add_function_parentheses = True
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-
-on_rtd = os.environ.get("READTHEDOCS", None) == "True"
-if not on_rtd:
-    import sphinx_rtd_theme
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-
 
 html_theme = 'furo'
 
