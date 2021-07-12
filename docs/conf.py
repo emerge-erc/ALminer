@@ -49,6 +49,7 @@ master_doc = "index"
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 add_function_parentheses = True
+nbsphinx_execute = 'never'
 
 # -- Options for HTML output -------------------------------------------------
 
