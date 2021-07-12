@@ -13,6 +13,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
+import furo
 
 
 # -- Project information -----------------------------------------------------
@@ -35,7 +36,8 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.napoleon',
     'sphinx.ext.imgmath',
-    'nbsphinx', 'sphinx.ext.mathjax'
+    'nbsphinx', 'sphinx.ext.mathjax',
+    'furo'
 ]
 
 source_suffix = ['.rst', '.ipynb']
