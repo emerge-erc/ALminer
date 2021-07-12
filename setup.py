@@ -15,7 +15,7 @@ setup(
     description='ALminer: ALMA archive mining and visualization toolkit',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=find_packages(include=['alminer', 'alminer.*']),
+    packages=find_packages(include=['alminer']),
     url='https://github.com/emerge-erc/ALminer',
     project_urls={
         "Bug Tracker": "https://github.com/emerge-erc/ALminer/issues"
