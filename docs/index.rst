@@ -56,7 +56,16 @@ highly recommend working in a `Jupyter notebook environment`_ in order to make u
 ``alminer``'s visualization tools. We aim to keep adding new notebooks
 relevant for various sub-fields in the future.
 
-To work with the tutorial notebook interactively |badge|
+.. only:: latex
+
+  .. note::
+    To work with the tutorial notebook interactively |badge_pdf|
+
+.. only:: html
+
+  .. note::
+    To work with the tutorial notebook interactively |badge_svg|
+
 
 .. toctree::
    :maxdepth: 2
@@ -69,22 +78,25 @@ To work with the tutorial notebook interactively |badge|
    tutorials/5_download_data
    tutorials/6_advanced_query
 
+ALminer
+_______
 .. toctree::
    :maxdepth: 2
    :hidden:
    :caption: ALminer
 
-   pages/alminer_functions
+   pages/api
    pages/query_keywords
 
+ALMA
+____
 .. toctree::
    :maxdepth: 2
    :hidden:
    :caption: ALMA
 
-   pages/science_categories
+   pages/scientific_categories
    pages/science_keywords
-
 
 Acknowledgements
 ----------------
@@ -118,7 +130,10 @@ If you encounter issues, please `open an issue`_.
 If you have suggestions for improvement or would like to collaborate
 with us on this project, please e-mail `Aida Ahmadi`_ and `Alvaro Hacar`_.
 
-.. |badge| image:: ../images/Binder_badge.pdf
+.. |badge_svg| image:: ../images/Binder_badge.svg
+   :target: https://mybinder.org/v2/gh/emerge-erc/ALminer/main?filepath=notebooks/tutorial/ALminer_tutorial.ipynb
+
+.. |badge_pdf| image:: ../images/Binder_badge.pdf
    :target: https://mybinder.org/v2/gh/emerge-erc/ALminer/main?filepath=notebooks/tutorial/ALminer_tutorial.ipynb
 
 .. _open an issue: https://github.com/emerge-erc/ALminer/issues

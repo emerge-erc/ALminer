@@ -30,7 +30,13 @@ release = '0.1.1'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['nbsphinx']
+extensions = ['nbsphinx',
+              'sphinx.ext.autodoc',
+              'sphinx.ext.coverage',
+              'sphinx.ext.napoleon',
+              'sphinx.ext.imgmath',
+              'sphinx.ext.imgconverter'
+              ]
 source_suffix = ['.rst', '.ipynb']
 
 # Add any paths that contain templates here, relative to this directory.
@@ -43,13 +49,10 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 nbsphinx_execute = 'never'
 latex_engine = 'xelatex'
 latex_elements = {'extraclassoptions': 'openany,oneside'}
-nbsphinx_prolog = """
-.. raw:: html
+coverage_show_missing_items = True
+autodoc_mock_imports = ['astropy', 'astroquery', 'pandas', 'numpy', 'matplotlib', 'pyvo']
+autodoc_member_order = 'bysource'
 
-    <style>
-        summary > * {display: inline, list-item;}
-    </style>
-"""
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
