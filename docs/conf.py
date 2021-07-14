@@ -35,7 +35,6 @@ extensions = ['nbsphinx',
               'sphinx.ext.coverage',
               'sphinx.ext.napoleon',
               'sphinx.ext.imgmath',
-              'sphinx.ext.imgconverter'
               ]
 source_suffix = ['.rst', '.ipynb']
 
