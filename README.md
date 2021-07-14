@@ -37,10 +37,12 @@ The dependencies are `numpy`, `matplotlib`, [`pandas`](https://pandas.pydata.org
 
 ## Getting started
 
-We have created an extensive [tutorial Jupyter Notebook](https://nbviewer.jupyter.org/github/emerge-erc/ALminer/blob/main/notebooks/tutorial/ALminer_tutorial.ipynb?flush_cache=True) where all `alminer` features have been highlighted. This is an excellent starting point to get familiar with all the possibilities; a glossery of all functions is provided at the bottom of this notebook. We highly recommend working in a [Jupyter notebook environment](https://jupyter.org/install) in order to make use of `alminer`'s visualization tools. We aim to keep adding new notebooks relevant for various sub-fields in the future.
+We have created an extensive [tutorial Jupyter Notebook](https://nbviewer.jupyter.org/github/emerge-erc/ALminer/blob/main/notebooks/tutorial/ALminer_tutorial.ipynb?flush_cache=True) where all `alminer` features have been highlighted. This is an excellent starting point to get familiar with all the possibilities; a glossery of all functions is provided at the bottom of this notebook. 
 
 |  To work with the tutorial notebook interactively [![badge](images/Binder_badge.svg)](https://mybinder.org/v2/gh/emerge-erc/ALminer/main?filepath=notebooks/tutorial/ALminer_tutorial.ipynb) |
 |------|
+
+We highly recommend working in a [Jupyter notebook environment](https://jupyter.org/install) in order to make use of `alminer`'s visualization tools. We aim to keep adding new notebooks relevant for various sub-fields in the future.
 
 ## Documentation
 
