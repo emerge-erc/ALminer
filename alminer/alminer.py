@@ -23,8 +23,6 @@ from astropy import constants as const
 # matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter, NullFormatter
-plt.rcParams['figure.dpi'] = 300
-plt.rcParams['savefig.dpi'] = 300
 
 # astroquery
 from astroquery.alma import Alma
@@ -241,13 +239,13 @@ def catalog(target_df, search_radius=1., point=True, public=True, published=None
     ----------
     target_df : pandas.DataFrame
          Source names and coordinates.
+
          Index:
             RangeIndex
          Columns:
             Name: Name, dtype: str, description: target name (can be numbers or dummy names)
             Name: RAJ2000, dtype: float64, description: right ascension in degrees (ICRS)
             Name: DEJ2000, dtype: float64, description: declination in degrees (ICRS)
-        
     search_radius : float, optional
          (Default value = 1. arcmin)
          Search radius (in arcmin) around the source coordinates.
