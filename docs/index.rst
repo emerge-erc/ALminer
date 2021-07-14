@@ -78,18 +78,6 @@ relevant for various sub-fields in the future.
    tutorials/5_download_data
    tutorials/6_advanced_query
 
-ALminer
-_______
-.. toctree::
-   :maxdepth: 2
-   :hidden:
-   :caption: ALminer
-
-   pages/api
-   pages/query_keywords
-
-ALMA
-____
 .. toctree::
    :maxdepth: 2
    :hidden:
@@ -97,6 +85,14 @@ ____
 
    pages/scientific_categories
    pages/science_keywords
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: ALminer
+
+   pages/query_keywords
+   pages/api
 
 Acknowledgements
 ----------------
