@@ -1,5 +1,7 @@
 <img src="images/ALminer_logo_header.jpg" alt="ALminer" align="center"/>
 
+[![Documentation Status](https://readthedocs.org/projects/alminer/badge/?version=latest)](https://alminer.readthedocs.io/en/latest/?badge=latest)
+
 # ALminer: ALMA Archive Mining & Visualization Toolkit
 
 `alminer` is a Python-based code to effectively query, analyse, and visualize the [ALMA science archive](https://almascience.eso.org/aq/). It also allows users to directly download ALMA data products and/or raw data for further image processing.
@@ -37,9 +39,20 @@ The dependencies are `numpy`, `matplotlib`, [`pandas`](https://pandas.pydata.org
 
 We have created an extensive [tutorial Jupyter Notebook](https://nbviewer.jupyter.org/github/emerge-erc/ALminer/blob/main/notebooks/tutorial/ALminer_tutorial.ipynb?flush_cache=True) where all `alminer` features have been highlighted. This is an excellent starting point to get familiar with all the possibilities; a glossery of all functions is provided at the bottom of this notebook. We highly recommend working in a [Jupyter notebook environment](https://jupyter.org/install) in order to make use of `alminer`'s visualization tools. We aim to keep adding new notebooks relevant for various sub-fields in the future. 
 
+---
+
+**NOTE**
+
 To work with the tutorial notebook interactively:
 
 [![badge](images/Binder_badge.svg)](https://mybinder.org/v2/gh/emerge-erc/ALminer/main?filepath=notebooks/tutorial/ALminer_tutorial.ipynb)
+
+---
+
+## Documentation
+
+More information can be found in the [documentation](https://alminer.readthedocs.io/en/latest/?badge=latest).
+
 
 ## Acknowledgements
 
