@@ -15,7 +15,7 @@ The easiest way to install ``alminer`` is with ``pip``:
 
 ``pip install alminer``
 
-To obtain the most recent version of the code from Github:
+To obtain the most recent version of the code from `GitHub`_:
 
 ``pip install https://github.com/emerge-erc/ALminer/archive/refs/heads/main.zip``
 
@@ -106,8 +106,8 @@ Union’s Horizon 2020 research and innovation programme (Grant agreement
 No. 851435).
 
 If you use ``alminer`` as part of your research, please consider citing
-this `ASCL article <https://ascl.net/code/v/2971>`__ (ADS reference will
-be added to the Github page when available).
+this `ASCL article`_ (ADS reference will
+be added to the `GitHub`_ page when available).
 
 ``alminer`` makes use of different routines in
 `Astropy`_ and `Astroquery`_. Please
@@ -132,7 +132,9 @@ with us on this project, please e-mail `Aida Ahmadi`_ and `Alvaro Hacar`_.
 .. |badge_pdf| image:: ../images/Binder_badge.pdf
    :target: https://mybinder.org/v2/gh/emerge-erc/ALminer/main?filepath=notebooks/tutorial/ALminer_tutorial.ipynb
 
+.. _GitHub: https://github.com/emerge-erc/ALminer
 .. _open an issue: https://github.com/emerge-erc/ALminer/issues
+.. _ASCL article: https://ascl.net/code/v/2971
 .. _Aida Ahmadi: mailto:aahmadi@strw.leidenuniv.nl
 .. _Alvaro Hacar: mailto:alvaro.hacar@univie.ac.at
 .. _Ginsburg et al. 2019: https://ui.adsabs.harvard.edu/abs/2019AJ....157...98G/abstract
