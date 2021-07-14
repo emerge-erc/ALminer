@@ -1,6 +1,6 @@
 """
 ALminer: ALMA archive mining and visualization toolkit
-=======
+======================================================
 A package for mining the Atacama Large Millimeter/submillimeter
 Array (ALMA) data archive and visualizing the queried observations.
 """
