@@ -1,0 +1,5 @@
+This folder hosts the presentation material for ALminer's demo at the European ARC Network initiative, [I-TRAIN](https://almascience.eso.org/tools/eu-arc-network/i-train), taking place on September 30, 2021 at 11 CEST. I-TRAIN is a regular series of Interactive Training in Reduction and Analysis of INterferometric data.
+
+To follow along with the presentation during the demo, click on [![badge](images/Binder_badge.svg)](https://mybinder.org/v2/gh/emerge-erc/ALminer/main?urlpath=/tree/notebooks/I-TRAIN/I-TRAIN_slides.ipynb). This will open the notebook on a cloud and you do not need to install ALminer locally. Once the notebook opens on Binder, you can execute each cell by pressing <kbd>Shift</kbd>+<kbd>Enter</kbd>.
+
+If you prefer to run the notebook locally, you need to [install ALminer on your machine](https://github.com/emerge-erc/ALminer#installation).
