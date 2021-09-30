@@ -103,8 +103,8 @@ def conesearch(ra, dec, search_radius=1., point=True, public=True, published=Non
     """
     search_radius = search_radius * u.arcmin
     if point:
-        query = "SELECT * FROM ivoa.obscore WHERE 1 = CONTAINS(POINT('ICRS', s_ra, s_dec), " \
-                "CIRCLE('ICRS',{},{},{}))".format(ra, dec, search_radius.to(u.deg).value)
+        query = "SELECT * FROM ivoa.ObsCore WHERE 1 = INTERSECTS(CIRCLE('ICRS',{},{},{}), " \
+                "s_region)".format(ra, dec, search_radius.to(u.deg).value)
     else:
         query = "SELECT * FROM ivoa.ObsCore WHERE 1 = INTERSECTS(CIRCLE('ICRS',{},{},{}), " \
                 "s_region)".format(ra, dec, search_radius.to(u.deg).value)
