@@ -163,7 +163,7 @@ def target(sources, search_radius=1., point=True, public=True, published=None, p
 
     Parameters
     ----------
-    sources : list of str
+    sources : str or list of str
          list of sources by name.
          (IMPORTANT: source names must be identified by at least one of Simbad, NED, or Vizier)
     search_radius : float, optional
@@ -199,6 +199,8 @@ def target(sources, search_radius=1., point=True, public=True, published=None, p
     keysearch : Query the ALMA archive for any (string-type) keywords defined in ALMA TAP system.
 
     """
+    if isinstance(sources, str):
+        sources = [sources]
     print("================================")
     print("alminer.target results ")
     print("================================")
