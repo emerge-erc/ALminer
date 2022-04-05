@@ -1348,7 +1348,11 @@ def download_data(observations, fitsonly=False, dryrun=False, print_urls=False, 
         else:
             print("Starting download. Please wait...")
             print("================================")
-            myAlma.download_files(dl_link_list, cache=True)
+            try:
+                myAlma.download_files(dl_link_list, cache=True)
+            except ValueError as e:
+                print(e)
+
     else:
         data_table = Alma.get_data_info(uids_list, expand_tarfiles=False)
         dl_link_list = data_table['access_url'].tolist()
@@ -1361,7 +1365,10 @@ def download_data(observations, fitsonly=False, dryrun=False, print_urls=False, 
         else:
             print("Starting download. Please wait...")
             print("================================")
-            myAlma.retrieve_data_from_uid(uids_list, cache=True)
+            try:
+                myAlma.retrieve_data_from_uid(uids_list, cache=True)
+            except ValueError as e:
+                print(e)
     print("Download location = {}".format(myAlma.cache_location))
     print("Total number of Member OUSs to download = {}".format(len(uids_list)))
     print("Selected Member OUSs: {}".format(uids_list.tolist()))
