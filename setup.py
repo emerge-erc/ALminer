@@ -26,7 +26,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     license='MIT',
-    install_requires=['numpy>=1.15', 'pandas>1.0', 'matplotlib>=3.3.0', 'pyvo>=1.1',
+    install_requires=['numpy>=1.15', 'pandas>1.0', 'matplotlib>=3.3.0', 'pyvo>=1.3',
                       'astropy>=3.1.2', 'astroquery>=0.4.2'],
     python_requires='>=3.6'
 )
