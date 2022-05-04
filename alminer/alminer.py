@@ -43,15 +43,44 @@ from .constants import band_names, band_color, band_min_freq, band_max_freq, \
 # Setup Functions
 ##############################################
 
-def _set_service():
-    """Set the url for the ALMA TAP service."""
-    service = tap.TAPService("https://almascience.eso.org/tap")
+def _set_service(tap_service='ESO'):
+    """
+    Set the url for the ALMA TAP service.
+
+    Parameters
+    ----------
+    tap_service : str, optional
+         (Default value = 'ESO')
+         The TAP service to use. Options are:
+         'ESO' for Europe (https://almascience.eso.org/tap),
+         'NRAO' for North America (https://almascience.nrao.edu/tap), or
+         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
+
+    """
+    if tap_service == 'NRAO':
+        service = tap.TAPService("https://almascience.nrao.edu/tap")
+    elif tap_service == 'NAOJ':
+        service = tap.TAPService("https://almascience.nao.ac.jp/tap")
+    else:
+        service = tap.TAPService("https://almascience.eso.org/tap")
     return service
 
 
-def _get_metadata():
-    """Get TAP metadata in order to set units properly."""
-    service = _set_service()
+def _get_metadata(tap_service='ESO'):
+    """
+    Get TAP metadata in order to set units properly.
+
+    Parameters
+    ----------
+    tap_service : str, optional
+         (Default value = 'ESO')
+         The TAP service to use. Options are:
+         'ESO' for Europe (https://almascience.eso.org/tap),
+         'NRAO' for North America (https://almascience.nrao.edu/tap), or
+         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
+
+    """
+    service = _set_service(tap_service)
     metadata_query = "SELECT column_name, datatype, unit, ucd, utype, description from TAP_SCHEMA.columns"
     TAP_metadata = service.search(metadata_query)
     return pd.DataFrame(TAP_metadata).set_index('column_name')
@@ -61,7 +90,7 @@ def _get_metadata():
 # Query Functions
 ##############################################
 
-def conesearch(ra, dec, search_radius=1., point=True, public=True, published=None, print_targets=True,
+def conesearch(ra, dec, search_radius=1., tap_service='ESO', point=True, public=True, published=None, print_targets=True,
                print_query=False):
     """
     Query the ALMA archive for a given position and radius around it.
@@ -75,6 +104,12 @@ def conesearch(ra, dec, search_radius=1., point=True, public=True, published=Non
     search_radius : float, optional
          (Default value = 1. arcmin)
          Search radius (in arcmin) around the source coordinates.
+    tap_service : str, optional
+         (Default value = 'ESO')
+         The TAP service to use. Options are:
+         'ESO' for Europe (https://almascience.eso.org/tap),
+         'NRAO' for North America (https://almascience.nrao.edu/tap), or
+         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
     point : bool, optional
          (Default value = True)
          Search whether the phase center of the observations is contained within the search_radius (point=True)
@@ -117,7 +152,7 @@ def conesearch(ra, dec, search_radius=1., point=True, public=True, published=Non
     if print_query:
         print("Your query is: {}".format(query))
 
-    TAP_df = run_query(query)
+    TAP_df = run_query(query, tap_service=tap_service)
     if TAP_df is not None:
         if published:  # case pf published = True
             TAP_df = TAP_df[TAP_df['publication_year'].notnull()]
@@ -127,7 +162,7 @@ def conesearch(ra, dec, search_radius=1., point=True, public=True, published=Non
         return filtered_df
 
 
-def run_query(query_str):
+def run_query(query_str, tap_service='ESO'):
     """
     Run the TAP query through PyVO service.
 
@@ -135,13 +170,18 @@ def run_query(query_str):
     ----------
     query_str : str
          ADQL query to send to the PyVO TAP service
-
+    tap_service : str, optional
+         (Default value = 'ESO')
+         The TAP service to use. Options are:
+         'ESO' for Europe (https://almascience.eso.org/tap),
+         'NRAO' for North America (https://almascience.nrao.edu/tap), or
+         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
     Returns
     -------
     pandas.DataFrame containing the query results
 
     """
-    service = _set_service()
+    service = _set_service(tap_service)
     # Run query
     pyvo_TAP_results = service.search(query_str)  # for large queries add maxrec=1000000
     # Transform output into astropy table first, then to a pandas DataFrame
@@ -300,7 +340,7 @@ def catalog(target_df, search_radius=1., point=True, public=True, published=None
         print("--------------------------------")
 
 
-def keysearch(search_dict, public=True, published=None, print_query=False, print_targets=True):
+def keysearch(search_dict, tap_service='ESO', public=True, published=None, print_query=False, print_targets=True):
     """
     Query the ALMA archive for any (string-type) keywords defined in ALMA TAP system.
 
@@ -309,6 +349,12 @@ def keysearch(search_dict, public=True, published=None, print_query=False, print
     search_dict : dict[str, list of str]
          Dictionary of keywords in the ALMA archive and their values. Values must be formatted as a list.
          A list of valid keywords are stored in VALID_KEYWORDS_STR variable.
+    tap_service : str, optional
+         (Default value = 'ESO')
+         The TAP service to use. Options are:
+         'ESO' for Europe (https://almascience.eso.org/tap),
+         'NRAO' for North America (https://almascience.nrao.edu/tap), or
+         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
     public : bool, optional
          (Default value = True)
          Search for public data (public=True), proprietary data (public=False),
@@ -393,7 +439,7 @@ def keysearch(search_dict, public=True, published=None, print_query=False, print
     full_query = "SELECT * FROM ivoa.obscore WHERE {} ORDER BY proposal_id".format(" AND ".join(full_query_list))
     if print_query:
         print("Your query is: {}".format(full_query))
-    TAP_df = run_query(full_query)
+    TAP_df = run_query(full_query, tap_service=tap_service)
     # Filter whether the user wants published data, unpublished data, or both (default)
     if published:  # case pf published = True
         TAP_df = TAP_df[TAP_df['publication_year'].notnull()]
