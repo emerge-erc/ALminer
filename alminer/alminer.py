@@ -1325,13 +1325,16 @@ def download_data(observations, fitsonly=False, dryrun=False, print_urls=False, 
     except TypeError:
         print("No data to download. Check the input DataFrame.")
         return
-    # change download location if specified by user, else the location will be the astrquery cache location
+    # change download location if specified by user, else the location will be a folder called 'data'
+    # in the current working directory
     if location != default_location:
         if os.path.isdir(location):
             myAlma.cache_location = location
         else:
             print("{} is not a directory. The download location will be set to {}".format(location, default_location))
             myAlma.cache_location = default_location
+    elif (location == default_location) and not os.path.isdir(location):  # create the 'data' subdirectory
+        os.makedirs(default_location)
     if fitsonly:
         data_table = Alma.get_data_info(uids_list, expand_tarfiles=True)
         # filter the data_table and keep only rows with "fits" in 'access_url' and the strings provided by user
