@@ -378,8 +378,9 @@ def keysearch(search_dict, tap_service='ESO', public=True, published=None, print
     -----
     The power of this function is in combining keywords. When multiple keywords are provided, they are
     queried using 'AND' logic, but when multiple values are provided for a given keyword, they are queried using
-    'OR' logic. If a given value contains spaces, its constituents are queried using 'AND' logic. The only exception
-    to this rule is the 'target_name' keyword.
+    'OR' logic. If a given value contains spaces, its constituents are queried using 'AND' logic. Words encapsulated
+     in quotation marks (either ' or ") are queried as phrases. Values for the 'target_name' keyword
+     are queried with 'OR' logic.
 
     Examples
     --------
@@ -391,9 +392,13 @@ def keysearch(search_dict, tap_service='ESO', public=True, published=None, print
          will query the archive for projects with the words
          "high-mass" OR "star" OR "formation" OR "outflow" OR "disk" in their proposal abstracts.
 
-    keysearch({"proposal_abstract": ["star formation"], "scientific_category":['Galaxies']})
-         will query the archive for projects with the words
-         "star" AND "formation" in their proposal abstracts AND
+    keysearch({"proposal_abstract": ["'high-mass star formation' outflow disk"]})
+         will query the archive for projects with the phrase
+         "high-mass star formation" AND the words "outflow" AND "disk" in their proposal abstracts.
+
+    keysearch({"proposal_abstract": ["'star formation'"], "scientific_category":['Galaxies']})
+         will query the archive for projects with the phrase
+         "star formation" in their proposal abstracts AND
          projects that are within the scientific_category of 'Galaxies'.
 
     """
@@ -426,10 +431,12 @@ def keysearch(search_dict, tap_service='ESO', public=True, published=None, print
         else:
             keyword_query_list = []
             for v in values:
-                # If there are spaces in the values of a given keyword, split them out and query them with AND logic
+                # If there are quotations in the values of a given keyword, split them out and query them as phrases
+                # If there are remaining keywords separated by spaces, split them out and query them with AND logic
                 if re.search(r"\s", v):
-                    split_values = v.split()
-                    current_query = ["LOWER({}) LIKE '%{}%'".format(keyword, s.lower()) for s in split_values]
+                    split_values = re.findall(r"['\"].*['\"]|\d+\.\d+|[\w-]+", v)
+                    current_query = ["LOWER({}) LIKE '%{}%'".format(keyword, re.sub("['\"]", '', s.lower())) for s in
+                                     split_values]
                     keyword_query_list.append("({})".format(" AND ".join(current_query)))
                 # If separate words are provided as values, query them with OR logic
                 else:
