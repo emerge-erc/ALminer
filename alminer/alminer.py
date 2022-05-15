@@ -191,7 +191,8 @@ def run_query(query_str, tap_service='ESO'):
     return TAP_df
 
 
-def target(sources, search_radius=1., point=True, public=True, published=None, print_query=False, print_targets=True):
+def target(sources, search_radius=1., tap_service='ESO', point=True, public=True, published=None, print_query=False,
+           print_targets=True):
     """
     Query targets by name.
 
@@ -209,6 +210,12 @@ def target(sources, search_radius=1., point=True, public=True, published=None, p
     search_radius : float, optional
          (Default value = 1. arcmin)
          Search radius (in arcmin) around the source coordinates.
+    tap_service : str, optional
+         (Default value = 'ESO')
+         The TAP service to use. Options are:
+         'ESO' for Europe (https://almascience.eso.org/tap),
+         'NRAO' for North America (https://almascience.nrao.edu/tap), or
+         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
     point : bool, optional
          (Default value = True)
          Search whether the phase center of the observations is contained within the search_radius (point=True)
@@ -252,8 +259,8 @@ def target(sources, search_radius=1., point=True, public=True, published=None, p
             # Get source coodinates from astropy SESAME resolver querying multiple databases (SIMBAD, NED, Vizier)
             source_pos = get_icrs_coordinates(s)
             TAP_df = conesearch(ra=source_pos.ra.deg, dec=source_pos.dec.deg, search_radius=search_radius,
-                                point=point, public=public, published=published, print_query=print_query,
-                                print_targets=print_targets)
+                                tap_service=tap_service, point=point, public=public, published=published,
+                                print_query=print_query, print_targets=print_targets)
             if TAP_df is not None:
                 complete_results.append(TAP_df)
         except name_resolve.NameResolveError as err:  # source coords not found in SESAME resolver
@@ -272,8 +279,8 @@ def target(sources, search_radius=1., point=True, public=True, published=None, p
         print("--------------------------------")
 
 
-def catalog(target_df, search_radius=1., point=True, public=True, published=None, print_query=False,
-            print_targets=True):
+def catalog(target_df, search_radius=1., tap_service='ESO', point=True, public=True, published=None,
+            print_query=False, print_targets=True):
     """
     Query the ALMA archive for a list of coordinates or a catalog of sources based on their coordinates.
 
@@ -291,6 +298,12 @@ def catalog(target_df, search_radius=1., point=True, public=True, published=None
     search_radius : float, optional
          (Default value = 1. arcmin)
          Search radius (in arcmin) around the source coordinates.
+    tap_service : str, optional
+         (Default value = 'ESO')
+         The TAP service to use. Options are:
+         'ESO' for Europe (https://almascience.eso.org/tap),
+         'NRAO' for North America (https://almascience.nrao.edu/tap), or
+         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
     point : bool, optional
          (Default value = True)
          Search whether the phase center of the observations is contained within the search_radius (point=True)
@@ -325,8 +338,8 @@ def catalog(target_df, search_radius=1., point=True, public=True, published=None
         print("Target = {}".format(target_df.Name[p]))
         source_pos = SkyCoord(target_df.RAJ2000[p] * u.deg, target_df.DEJ2000[p] * u.deg, frame='icrs')
         TAP_df = conesearch(ra=source_pos.ra.deg, dec=source_pos.dec.deg, search_radius=search_radius,
-                            point=point, public=public, published=published, print_query=print_query,
-                            print_targets=print_targets)
+                            tap_service=tap_service, point=point, public=public, published=published,
+                            print_query=print_query, print_targets=print_targets)
         if TAP_df is not None:
             complete_results.append(TAP_df)
     # if the list of query results is not empty, concatenate them together into one DataFrame
