@@ -112,10 +112,9 @@ def conesearch(ra, dec, search_radius=1., tap_service='ESO', point=True, public=
          'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
     point : bool, optional
          (Default value = True)
-         Search whether the phase center of the observations is contained within the search_radius (point=True)
-         or whether any part of the observed region overlaps with the cone extending the search_radius (point=False).
-         Note that point=True is much faster than point=False but the latter should be used if one is interested in
-         searching for mosaics.
+         Search whether the specified position (ra, dec) is contained within any ALMA observations (point=True)
+         or query all ALMA observations that overlap with a cone centred at the specified position (ra, dec) and
+         extending the search_radius (point=False). In the case of point=True, the search_radius parameter is ignored.
     public : bool, optional
          (Default value = True)
          Search for public data (public=True), proprietary data (public=False),
@@ -138,8 +137,7 @@ def conesearch(ra, dec, search_radius=1., tap_service='ESO', point=True, public=
     """
     search_radius = search_radius * u.arcmin
     if point:
-        query = "SELECT * FROM ivoa.ObsCore WHERE (1 = INTERSECTS(CIRCLE('ICRS',{},{},{}), s_region) OR " \
-                "1 = CONTAINS(POINT('ICRS',{},{}), s_region))".format(ra, dec, search_radius.to(u.deg).value, ra, dec)
+        query = "SELECT * FROM ivoa.ObsCore WHERE 1 = CONTAINS(POINT('ICRS',{},{}), s_region)".format(ra, dec)
     else:
         query = "SELECT * FROM ivoa.ObsCore WHERE (1 = INTERSECTS(CIRCLE('ICRS',{},{},{}), s_region) OR " \
                 "1 = CONTAINS(POINT('ICRS',{},{}), s_region))".format(ra, dec, search_radius.to(u.deg).value, ra, dec)
@@ -218,10 +216,9 @@ def target(sources, search_radius=1., tap_service='ESO', point=True, public=True
          'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
     point : bool, optional
          (Default value = True)
-         Search whether the phase center of the observations is contained within the search_radius (point=True)
-         or whether any part of the observed region overlaps with the cone extending the search_radius (point=False).
-         Note that point=True is much faster than point=False but the latter should be used if one is interested in
-         searching for mosaics.
+         Search whether the specified position (ra, dec) is contained within any ALMA observations (point=True)
+         or query all ALMA observations that overlap with a cone centred at the specified position (ra, dec) and
+         extending the search_radius (point=False). In the case of point=True, the search_radius parameter is ignored.
     public : bool, optional
          (Default value = True)
          Search for public data (public=True), proprietary data (public=False),
@@ -306,10 +303,9 @@ def catalog(target_df, search_radius=1., tap_service='ESO', point=True, public=T
          'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
     point : bool, optional
          (Default value = True)
-         Search whether the phase center of the observations is contained within the search_radius (point=True)
-         or whether any part of the observed region overlaps with the cone extending the search_radius (point=False).
-         Note that point=True is much faster than point=False but the latter should be used if one is interested in
-         searching for mosaics.
+         Search whether the specified position (ra, dec) is contained within any ALMA observations (point=True)
+         or query all ALMA observations that overlap with a cone centred at the specified position (ra, dec) and
+         extending the search_radius (point=False). In the case of point=True, the search_radius parameter is ignored.
     public : bool, optional
          (Default value = True)
          Search for public data (public=True), proprietary data (public=False),
