@@ -52,6 +52,7 @@ More information can be found in the [documentation](https://alminer.readthedocs
 
 - You can now specify which archive service to query: [ESO](https://almascience.eso.org/tap) is the default, and other options are [NRAO](https://almascience.nrao.edu/tap) and [NAOJ](https://almascience.nrao.edu/tap). This option can be given through the *'tap_service'* parameter to all functions that do the query (e.g. keysearch, target, catalog). For example:
   - ```alminer.target(["TW Hya", "HL Tau"], tap_service='NRAO')```
+  - Note that currently the ESO service is not returning all results, hence it is advisable to test your queries with multiple services until further notice.
 - It is now possible to query entire phrases with the `keysearch` function. For example:
   - ```alminer.keysearch({'proposal_abstract': ['"high-mass star formation" outflow disk']})``` will query the proposal abstracts for the phrase *high-mass star formation* AND the words *outflow* AND *disk*.
   - ```alminer.keysearch({'proposal_abstract': ['"high-mass star formation" outflow disk', '"massive star formation" outflow disk']}) ``` will query the the proposal abstracts for the phrase *high-mass star formation* AND the words *outflow* AND *disk* OR the phrase *massive star formation* AND the words *outflow* AND *disk*.
