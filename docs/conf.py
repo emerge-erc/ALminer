@@ -36,7 +36,6 @@ extensions = ['nbsphinx',
               'sphinx.ext.napoleon',
               'sphinx.ext.imgmath',
               ]
-source_suffix = ['.rst', '.ipynb']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
