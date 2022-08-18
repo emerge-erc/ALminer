@@ -492,6 +492,17 @@ def _set_plot_params(ax, title, xlabel, ylabel, legend=True, log=False):
         ax.set_ylim(ymin=1e-1)
 
 
+def _format_bytes(size):
+    """Convert the size of the dota to be downloaded in human-readable format."""
+    power = 1000
+    n = 0
+    power_labels = {0 : 'B', 1: 'KB', 2: 'MB', 3: 'GB', 4: 'TB', 5: 'PB', 6: 'EB'}
+    while size > power:
+        size /= power
+        n += 1
+    return size, power_labels[n]
+
+
 def filter_results(TAP_df, print_targets=True):
     """
     Add a few new useful columns to the pandas.DataFrame with the query results from the PyVO TAP service and
@@ -629,7 +640,7 @@ def explore(observations, allcols=False, allrows=False):
     if not allcols:
         observations = observations.iloc[:, : len(NEW_COLUMNS)]
     return observations
-    
+
 
 def get_units(column):
     """Print the units for a given column in the query results DataFrame."""
@@ -1035,7 +1046,7 @@ def plot_bands(observations, mark_freq='', z=0., mark_CO=False, showfig=True, sa
         print("--------------------------------")
         print("Nothing to plot: the DataFrame provided is empty.")
         print("--------------------------------")
-    
+
 
 def plot_observations(observations, mark_freq='', z=0., mark_CO=False, showfig=True, savefig=None):
     """
@@ -1403,51 +1414,41 @@ def download_data(observations, fitsonly=False, dryrun=False, print_urls=False, 
         # in 'filename_must_include' parameter
         dl_table = data_table[[i for i, v in enumerate(data_table['access_url']) if v.endswith(".fits") and
                                all(i in v for i in filename_must_include)]]
-        dl_link_list = dl_table['access_url'].tolist()
-        # keep track of the download size and number of files to download
-        dl_size = dl_table['content_length'].sum() / 1E9
-        dl_files = len(dl_table)
-        if dryrun:
-            print("This is a dryrun. To begin download, set dryrun=False.")
-            print("================================")
-        else:
-            print("Starting download. Please wait...")
-            print("================================")
-            try:
-                myAlma.download_files(dl_link_list, cache=True)
-            except ValueError as e:
-                print(e)
-
     else:
         data_table = Alma.get_data_info(uids_list, expand_tarfiles=False)
-        dl_link_list = data_table['access_url'].tolist()
-        # keep track of the download size and number of files to download
-        dl_size = data_table['content_length'].sum() / 1E9
-        dl_files = len(data_table)
-        if dryrun:
-            print("This is a dryrun. To begin download, set dryrun=False.")
-            print("================================")
-        else:
-            print("Starting download. Please wait...")
-            print("================================")
-            try:
-                myAlma.retrieve_data_from_uid(uids_list, cache=True)
-            except ValueError as e:
-                print(e)
-    print("Download location = {}".format(myAlma.cache_location))
-    print("Total number of Member OUSs to download = {}".format(len(uids_list)))
-    print("Selected Member OUSs: {}".format(uids_list.tolist()))
-    print("Number of files to download = {}".format(dl_files))
+        # filter the data_table and keep only rows with "fits" in 'access_url' and the strings provided by user
+        # in 'filename_must_include' parameter
+        dl_table = data_table[[i for i, v in enumerate(data_table['access_url']) if
+                               all(i in v for i in filename_must_include)]]
+    dl_df = dl_table.to_pandas()
+    # remove empty elements in the access_url column
+    dl_df = dl_df.loc[dl_df.access_url != '']
+    dl_link_list = list(dl_df['access_url'].unique())
+    # keep track of the download size and number of files to download
+    dl_size = dl_df['content_length'].sum()
+    dl_files = len(dl_df['access_url'].unique())
+    dl_uid_list = list(dl_df['ID'].unique())
+    if dryrun:
+        print("This is a dryrun. To begin download, set dryrun=False.")
+        print("================================")
+    else:
+        print("Starting download. Please wait...")
+        print("================================")
+        try:
+            myAlma.download_files(dl_link_list, cache=True)
+        except ValueError as e:
+            print(e)
     if dl_files > 0:
-        if dl_size > 1000.:
-            print("Needed disk space = {:.1f} TB".format(dl_size/1000.))
-        elif dl_size < 1.:
-            print("Needed disk space = {:.1f} MB".format(dl_size*1000.))
-        else:
-            print("Needed disk space = {:.1f} GB".format(dl_size))
+        print("Download location = {}".format(myAlma.cache_location))
+        print("Total number of Member OUSs to download = {}".format(len(dl_uid_list)))
+        print("Selected Member OUSs: {}".format(dl_uid_list))
+        print("Number of files to download = {}".format(dl_files))
+        dl_size_fmt, dl_format = _format_bytes(dl_size)
+        print("Needed disk space = {:.1f} {}".format(dl_size_fmt, dl_format))
         if print_urls:
             print("File URLs to download = {}".format("\n".join(dl_link_list)))
     else:
+        print("Nothing to download.")
         print("Note: often only a subset of the observations (e.g. the representative window) is ingested into "
               "the archive. In such cases, you may need to download the raw dataset, reproduce the calibrated "
               "measurement set, and image the observations of interest. It is also possible to request calibrated "
