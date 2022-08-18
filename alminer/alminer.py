@@ -1438,14 +1438,21 @@ def download_data(observations, fitsonly=False, dryrun=False, print_urls=False, 
     print("Total number of Member OUSs to download = {}".format(len(uids_list)))
     print("Selected Member OUSs: {}".format(uids_list.tolist()))
     print("Number of files to download = {}".format(dl_files))
-    if dl_size > 1000.:
-        print("Needed disk space = {:.1f} TB".format(dl_size/1000.))
-    elif dl_size < 1.:
-        print("Needed disk space = {:.1f} MB".format(dl_size*1000.))
+    if dl_files > 0:
+        if dl_size > 1000.:
+            print("Needed disk space = {:.1f} TB".format(dl_size/1000.))
+        elif dl_size < 1.:
+            print("Needed disk space = {:.1f} MB".format(dl_size*1000.))
+        else:
+            print("Needed disk space = {:.1f} GB".format(dl_size))
+        if print_urls:
+            print("File URLs to download = {}".format("\n".join(dl_link_list)))
     else:
-        print("Needed disk space = {:.1f} GB".format(dl_size))
-    if print_urls:
-        print("File URLs to download = {}".format("\n".join(dl_link_list)))
+        print("Note: often only a subset of the observations (e.g. the representative window) is ingested into "
+              "the archive. In such cases, you may need to download the raw dataset, reproduce the calibrated "
+              "measurement set, and image the observations of interest. It is also possible to request calibrated "
+              "measurement sets through a Helpdesk ticket to the European ARC "
+              "(see https://almascience.eso.org/local-news/requesting-calibrated-measurement-sets-in-europe).")
     print("--------------------------------")
 
 ####################################################################
