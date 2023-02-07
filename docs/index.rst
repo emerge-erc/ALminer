@@ -56,6 +56,8 @@ highly recommend working in a `Jupyter notebook environment`_ in order to make u
 ``alminer``'s visualization tools. We aim to keep adding new notebooks
 relevant for various sub-fields in the future.
 
+Note that the Jupyter notebooks may be outdated. The most up-to-date information can be found on this documentation page.
+
 .. only:: latex
 
   .. note::
@@ -96,7 +98,7 @@ relevant for various sub-fields in the future.
 
 What's new
 -----------
-
+* You can now specify which archive mirror to download data from: [ESO](https://almascience.eso.org/aq) is the default, and other options are [NRAO](https://almascience.nrao.edu/aq) and [NAOJ](https://almascience.nao.ac.jp/aq). This option can be given through the *'archive_mirror'* parameter in the `download_data` function.
 * You can now specify which archive service to query: [ESO](https://almascience.eso.org/tap) is the default, and other options are [NRAO](https://almascience.nrao.edu/tap) and [NAOJ](https://almascience.nrao.edu/tap). This option can be given through the *'tap_service'* parameter to all functions that do the query (e.g. keysearch, target, catalog). For example:
 
   * ``alminer.target(["TW Hya", "HL Tau"], tap_service='NRAO')``
