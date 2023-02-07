@@ -77,7 +77,7 @@ def _get_metadata(tap_service='ESO'):
          The TAP service to use. Options are:
          'ESO' for Europe (https://almascience.eso.org/tap),
          'NRAO' for North America (https://almascience.nrao.edu/tap), or
-         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
+         'NAOJ' for East Asia (https://almascience.nao.ac.jp/tap)
 
     """
     service = _set_service(tap_service)
@@ -109,7 +109,7 @@ def conesearch(ra, dec, search_radius=1., tap_service='ESO', point=True, public=
          The TAP service to use. Options are:
          'ESO' for Europe (https://almascience.eso.org/tap),
          'NRAO' for North America (https://almascience.nrao.edu/tap), or
-         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
+         'NAOJ' for East Asia (https://almascience.nao.ac.jp/tap)
     point : bool, optional
          (Default value = True)
          Search whether the specified position (ra, dec) is contained within any ALMA observations (point=True)
@@ -173,7 +173,7 @@ def run_query(query_str, tap_service='ESO'):
          The TAP service to use. Options are:
          'ESO' for Europe (https://almascience.eso.org/tap),
          'NRAO' for North America (https://almascience.nrao.edu/tap), or
-         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
+         'NAOJ' for East Asia (https://almascience.nao.ac.jp/tap)
     Returns
     -------
     pandas.DataFrame containing the query results
@@ -213,7 +213,7 @@ def target(sources, search_radius=1., tap_service='ESO', point=True, public=True
          The TAP service to use. Options are:
          'ESO' for Europe (https://almascience.eso.org/tap),
          'NRAO' for North America (https://almascience.nrao.edu/tap), or
-         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
+         'NAOJ' for East Asia (https://almascience.nao.ac.jp/tap)
     point : bool, optional
          (Default value = True)
          Search whether the specified position (ra, dec) is contained within any ALMA observations (point=True)
@@ -300,7 +300,7 @@ def catalog(target_df, search_radius=1., tap_service='ESO', point=True, public=T
          The TAP service to use. Options are:
          'ESO' for Europe (https://almascience.eso.org/tap),
          'NRAO' for North America (https://almascience.nrao.edu/tap), or
-         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
+         'NAOJ' for East Asia (https://almascience.nao.ac.jp/tap)
     point : bool, optional
          (Default value = True)
          Search whether the specified position (ra, dec) is contained within any ALMA observations (point=True)
@@ -363,7 +363,7 @@ def keysearch(search_dict, tap_service='ESO', public=True, published=None, print
          The TAP service to use. Options are:
          'ESO' for Europe (https://almascience.eso.org/tap),
          'NRAO' for North America (https://almascience.nrao.edu/tap), or
-         'NAOJ' for East Asia (https://almascience.nrao.edu/tap)
+         'NAOJ' for East Asia (https://almascience.nao.ac.jp/tap)
     public : bool, optional
          (Default value = True)
          Search for public data (public=True), proprietary data (public=False),
@@ -1345,7 +1345,7 @@ def save_source_reports(observations, mark_freq='', z=0., mark_CO=False):
 ##############################################
 
 def download_data(observations, fitsonly=False, dryrun=False, print_urls=False, filename_must_include='',
-                  location='./data'):
+                  location='./data', archive_mirror='ESO'):
     """
     Download ALMA data from the archive to a location on the local machine.
 
@@ -1374,6 +1374,12 @@ def download_data(observations, fitsonly=False, dryrun=False, print_urls=False, 
     location : str, optional
          (Default value = ./data)
          directory where the downloaded data should be placed.
+    archive_mirror : str, optional
+         (Default value = 'ESO')
+         The archive service to use. Options are:
+         'ESO' for Europe (https://almascience.eso.org),
+         'NRAO' for North America (https://almascience.nrao.edu), or
+         'NAOJ' for East Asia (https://almascience.nao.ac.jp)
 
     """
     print("================================")
@@ -1381,6 +1387,13 @@ def download_data(observations, fitsonly=False, dryrun=False, print_urls=False, 
     myAlma = Alma()
     default_location = './data'
     myAlma.cache_location = default_location
+    if archive_mirror == 'NRAO':
+        mirror = "https://almascience.nrao.edu"
+    elif archive_mirror == 'NAOJ':
+        mirror = "https://almascience.nao.ac.jp"
+    else:
+        mirror = "https://almascience.eso.org"
+    myAlma.archive_url = mirror
     # catch the case where the DataFrame is empty.
     try:
         if any(observations['data_rights'] == 'Proprietary'):
@@ -1409,13 +1422,13 @@ def download_data(observations, fitsonly=False, dryrun=False, print_urls=False, 
     elif (location == default_location) and not os.path.isdir(location):  # create the 'data' subdirectory
         os.makedirs(default_location)
     if fitsonly:
-        data_table = Alma.get_data_info(uids_list, expand_tarfiles=True)
+        data_table = myAlma.get_data_info(uids_list, expand_tarfiles=True)
         # filter the data_table and keep only rows with "fits" in 'access_url' and the strings provided by user
         # in 'filename_must_include' parameter
         dl_table = data_table[[i for i, v in enumerate(data_table['access_url']) if v.endswith(".fits") and
                                all(i in v for i in filename_must_include)]]
     else:
-        data_table = Alma.get_data_info(uids_list, expand_tarfiles=False)
+        data_table = myAlma.get_data_info(uids_list, expand_tarfiles=False)
         # filter the data_table and keep only rows with "fits" in 'access_url' and the strings provided by user
         # in 'filename_must_include' parameter
         dl_table = data_table[[i for i, v in enumerate(data_table['access_url']) if
