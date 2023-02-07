@@ -954,6 +954,7 @@ def plot_overview(observations, mark_freq='', z=0., mark_CO=False, showfig=True,
 
         fig.tight_layout()
         plt.rcParams['figure.dpi'] = 300
+        plt.rcParams['figure.facecolor'] = 'white'
         _save_plot(savefig)
         if showfig:
             plt.show()
@@ -1038,6 +1039,7 @@ def plot_bands(observations, mark_freq='', z=0., mark_CO=False, showfig=True, sa
 
         plt.tight_layout()
         plt.rcParams['figure.dpi'] = 300
+        plt.rcParams['figure.facecolor'] = 'white'
         _save_plot(savefig)
         if showfig:
             plt.show()
@@ -1106,6 +1108,7 @@ def plot_observations(observations, mark_freq='', z=0., mark_CO=False, showfig=T
 
         plt.tight_layout()
         plt.rcParams['figure.dpi'] = 300
+        plt.rcParams['figure.facecolor'] = 'white'
         _save_plot(savefig)
         if showfig:
             plt.show()
@@ -1223,6 +1226,7 @@ def plot_line_overview(observations, line_freq, z=0., line_name='', showfig=True
 
         plt.tight_layout()
         plt.rcParams['figure.dpi'] = 300
+        plt.rcParams['figure.facecolor'] = 'white'
         _save_plot(savefig)
         if showfig:
             plt.show()
@@ -1261,6 +1265,7 @@ def plot_sky(observations, showfig=True, savefig=None):
     ax.scatter(ra.radian, dec.radian, color="#E5323B", zorder=2)
     ax.set_title("Sky distribution", fontsize=18)
     plt.rcParams['figure.dpi'] = 300
+    plt.rcParams['figure.facecolor'] = 'white'
     _save_plot(savefig)
     if showfig:
         plt.show()
