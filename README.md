@@ -44,6 +44,8 @@ We have created an extensive [tutorial Jupyter Notebook](https://nbviewer.jupyte
 
 We highly recommend working in a [Jupyter notebook environment](https://jupyter.org/install) in order to make use of `alminer`'s visualization tools. We aim to keep adding new notebooks relevant for various sub-fields in the future.
 
+Note that the Jupyter notebooks may be outdated. The most up-to-date information can be found on the [documentation page](https://alminer.readthedocs.io/en/latest/?badge=latest).
+
 ## Documentation
 
 More information can be found in the [documentation](https://alminer.readthedocs.io/en/latest/?badge=latest).
