@@ -52,7 +52,8 @@ More information can be found in the [documentation](https://alminer.readthedocs
 
 ### What's new:
 
-- You can now specify which archive service to query: [ESO](https://almascience.eso.org/tap) is the default, and other options are [NRAO](https://almascience.nrao.edu/tap) and [NAOJ](https://almascience.nrao.edu/tap). This option can be given through the *'tap_service'* parameter to all functions that do the query (e.g. keysearch, target, catalog). For example:
+- You can now specify which archive mirror to download data from: [ESO](https://almascience.eso.org/aq) is the default, and other options are [NRAO](https://almascience.nrao.edu/aq) and [NAOJ](https://almascience.nao.ac.jp/aq). This option can be given through the *'archive_mirror'* parameter in the `download_data` function.
+- You can now specify which archive service to query: [ESO](https://almascience.eso.org/tap) is the default, and other options are [NRAO](https://almascience.nrao.edu/tap) and [NAOJ](https://almascience.nao.ac.jp/tap). This option can be given through the *'tap_service'* parameter to all functions that do the query (e.g. keysearch, target, catalog). For example:
   - ```alminer.target(["TW Hya", "HL Tau"], tap_service='NRAO')```
   - Note that currently the ESO service is not returning all results, hence it is advisable to test your queries with multiple services until further notice.
 - It is now possible to query entire phrases with the `keysearch` function. For example:
