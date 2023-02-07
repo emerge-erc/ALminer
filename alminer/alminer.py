@@ -90,7 +90,7 @@ def _get_metadata(tap_service='ESO'):
 # Query Functions
 ##############################################
 
-def conesearch(ra, dec, search_radius=1., tap_service='ESO', point=True, public=True, published=None, print_targets=True,
+def conesearch(ra, dec, search_radius=1., tap_service='ESO', point=False, public=True, published=None, print_targets=True,
                print_query=False):
     """
     Query the ALMA archive for a given position and radius around it.
@@ -189,7 +189,7 @@ def run_query(query_str, tap_service='ESO'):
     return TAP_df
 
 
-def target(sources, search_radius=1., tap_service='ESO', point=True, public=True, published=None, print_query=False,
+def target(sources, search_radius=1., tap_service='ESO', point=False, public=True, published=None, print_query=False,
            print_targets=True):
     """
     Query targets by name.
@@ -276,7 +276,7 @@ def target(sources, search_radius=1., tap_service='ESO', point=True, public=True
         print("--------------------------------")
 
 
-def catalog(target_df, search_radius=1., tap_service='ESO', point=True, public=True, published=None,
+def catalog(target_df, search_radius=1., tap_service='ESO', point=False, public=True, published=None,
             print_query=False, print_targets=True):
     """
     Query the ALMA archive for a list of coordinates or a catalog of sources based on their coordinates.
