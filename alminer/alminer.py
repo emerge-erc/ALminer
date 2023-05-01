@@ -181,7 +181,7 @@ def run_query(query_str, tap_service='ESO'):
     """
     service = _set_service(tap_service)
     # Run query
-    pyvo_TAP_results = service.search(query_str)  # for large queries add maxrec=1000000
+    pyvo_TAP_results = service.search(query_str, maxrec=1000000)  # for large queries add maxrec=1000000
     # Transform output into astropy table first, then to a pandas DataFrame
     TAP_df = pyvo_TAP_results.to_table().to_pandas()
     # the column publication_year must be in 'object' type because it contains numbers and NaNs
