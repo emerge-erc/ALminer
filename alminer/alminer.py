@@ -637,7 +637,9 @@ def explore(observations, allcols=False, allrows=False):
     pd.set_option('display.max_columns', 0)
     if allrows:
         pd.set_option('display.max_rows', None)
-    if not allcols:
+    if allcols:
+        pd.set_option('display.max_columns', None)
+    else:
         observations = observations.iloc[:, : len(NEW_COLUMNS)]
     return observations
 
