@@ -3,5 +3,5 @@ pandas>=1.2.5
 numpy>=1.21.0
 matplotlib>=3.4.2
 astropy>=4.3rc1
-astroquery>=0.4.2
+astroquery @ git+https://git@github.com/astropy/astroquery
 pyvo>=1.2.1
