@@ -1,6 +1,7 @@
 <img src="images/ALminer_logo_header.jpg" alt="ALminer" align="center"/>
 
 [![Documentation Status](https://readthedocs.org/projects/alminer/badge/?version=latest)](https://alminer.readthedocs.io/en/latest/?badge=latest)
+[![badge](images/ASCL_badge.svg)](https://ascl.net/2306.025)
 
 # ALminer: ALMA Archive Mining & Visualization Toolkit
 
@@ -64,7 +65,23 @@ More information can be found in the [documentation](https://alminer.readthedocs
 
 `alminer` has been developed through a collaboration between [Allegro](https://www.alma-allegro.nl/), the ALMA Regional Centre in The Netherlands, and the University of Vienna as part of the [EMERGE-StG project](https://emerge.alvarohacar.com). This project has received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation programme (Grant agreement No. 851435).
 
-If you use `alminer` as part of your research, please consider citing this [ASCL article](https://ascl.net/code/v/2971) (ADS reference will be added to the Github page when available).
+If you use `alminer` as part of your research, please consider citing this [ASCL article](https://ascl.net/2306.025):
+```
+@MISC{2023ascl.soft06025A,
+       author = {{Ahmadi}, Aida and {Hacar}, Alvaro},
+        title = "{ALminer: ALMA archive mining and visualization toolkit}",
+     keywords = {Software},
+ howpublished = {Astrophysics Source Code Library, record ascl:2306.025},
+         year = 2023,
+        month = jun,
+          eid = {ascl:2306.025},
+        pages = {ascl:2306.025},
+archivePrefix = {ascl},
+       eprint = {2306.025},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2023ascl.soft06025A},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+```
 
  `alminer` makes use of different routines in [Astropy](https://www.astropy.org/) and [Astroquery](https://astroquery.readthedocs.io/en/latest/). Please also consider citing the following papers:
 - Astropy: [Astropy Collaboration et al. 2013](https://ui.adsabs.harvard.edu/abs/2013A%26A...558A..33A/abstract) <br>
