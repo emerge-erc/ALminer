@@ -2,6 +2,7 @@
 
 [![Documentation Status](https://readthedocs.org/projects/alminer/badge/?version=latest)](https://alminer.readthedocs.io/en/latest/?badge=latest)
 [![badge](images/ASCL_badge.svg)](https://ascl.net/2306.025)
+[![DOI](https://zenodo.org/badge/370715453.svg)](https://zenodo.org/badge/latestdoi/370715453)
 
 # ALminer: ALMA Archive Mining & Visualization Toolkit
 
