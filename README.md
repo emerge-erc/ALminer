@@ -94,6 +94,6 @@ We also acknowledge the work of Leiden University M.Sc. students, Robin Mentel a
 
 If you encounter issues, please [open an issue](https://github.com/emerge-erc/ALminer/issues). 
 
-If you have suggestions for improvement or would like to collaborate with us on this project, please e-mail [Aida Ahmadi](mailto:aahmadi@strw.leidenuniv.nl) and [Alvaro Hacar](mailto:alvaro.hacar@univie.ac.at).
+If you have suggestions for improvement or would like to collaborate with us on this project, please e-mail [Aida Ahmadi](mailto:a.ahmadi@astron.nl) and [Alvaro Hacar](mailto:alvaro.hacar@univie.ac.at).
 
 <img src="images/UniVie_logo.jpg" alt="University of Vienna" width= "280px" hspace="10px"/><img src="images/ERC_logo.jpg" alt="ERC" width= "200px" hspace="10px"/><img src="images/Allegro_logo.png" alt="Allegro"  width= "280px" hspace="10px"/>
